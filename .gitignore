@@ -1,0 +1,11 @@
+rot/settings/local.py
+
+.coverage
+coverage/*
+
+*.py[cod]
+
+# IntelliJ
+.idea
+
+*.DS_Store
