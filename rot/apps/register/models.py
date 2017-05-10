@@ -10,7 +10,8 @@ from register.constants import RELATIONSHIPS
 
 class TimestampedUserModelMixin:
     created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, related_name='items_created', null=True, blank=True)
+        settings.AUTH_USER_MODEL, related_name='items_created', null=True,
+        blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
@@ -67,6 +68,7 @@ class Item(models.Model, TimestampedUserModelMixin):
     the schema from the related type.
     """
     name = models.CharField(max_length=100)
+    description = models.TextField(null=True)
     type = models.ForeignKey('Type')
     links = models.ManyToManyField(
         'self',
