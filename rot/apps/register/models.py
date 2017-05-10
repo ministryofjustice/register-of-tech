@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 
@@ -7,7 +8,14 @@ from mptt.models import MPTTModel, TreeForeignKey
 from register.constants import RELATIONSHIPS
 
 
-class Type(MPTTModel):
+class TimestampedUserModelMixin:
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name='items_created', null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+
+class Type(MPTTModel, TimestampedUserModelMixin):
     """
     Type of Item in list - Software, API, etc.
     Allows for nesting of types i.e. API could be nested within Software
@@ -51,7 +59,7 @@ class ItemRelation(models.Model):
                                related_name='to_obj')
 
 
-class Item(models.Model):
+class Item(models.Model, TimestampedUserModelMixin):
     """
     Item is the base data record.
     
@@ -66,5 +74,5 @@ class Item(models.Model):
         through_fields=('from_obj', 'to_obj'),
         symmetrical=False,
     )
-    owner = models.ForeignKey('auth.User')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='items')
     data = JSONField()
