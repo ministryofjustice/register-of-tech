@@ -11,6 +11,8 @@ A lot of the data is linked so a Graph DB would suit this. The same effect can b
 
 This leaves Postgres as the initial choice for prototyping.
 
+(It might be worth prototyping Airtable as a data store and creating an interface which uses its api. We would need to create out own auth/permissions etc in a separate DB)
+
 
 2017-05-09
 ----------
