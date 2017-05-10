@@ -1,0 +1,4 @@
+Django==1.11
+django-gov==0.2.1
+django-mptt==0.8.7
+psycopg2==2.7.1
