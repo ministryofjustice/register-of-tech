@@ -52,11 +52,13 @@ INSTALLED_APPS = [
 
 THIRD_PARTY_APPS = [
     'django_gov',
+    'rest_framework',
     'rest_framework_swagger',
 ]
 
 PROJECT_APPS = [
     'api',
+    'person',
     'register',
 ]
 
@@ -145,6 +147,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'person.Person'
+
+AIRTABLE_API_KEY = os.environ.get('AIRTABLE_API_KEY')
+AIRTABLE_API = os.environ.get('AIRTABLE_API')
 
 try:
     from .local import *

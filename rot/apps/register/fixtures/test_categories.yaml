@@ -1,0 +1,10 @@
+- model: register.category
+  pk: 1
+  fields:
+    name: Unknown
+    schema: {}
+    parent: null
+    lft: 1
+    rght: 2
+    tree_id: 1
+    level: 0
