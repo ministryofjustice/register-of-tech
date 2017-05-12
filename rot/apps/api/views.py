@@ -1,25 +1,57 @@
 # -*- coding: utf-8 -*-
 from rest_framework import viewsets
 
-from api.serializers import TypeSerializer
-from register.models import Type
+from api.serializers import CategorySerializer, ItemSerializer
+from register.models import Category, Item
 
 
-class TypeViewSet(viewsets.ModelViewSet):
+class CategoryViewSet(viewsets.ModelViewSet):
     """
-    View set for type
+    View set for Category
 
     retrieve:
-    Detail view of a single type
+    Detail view of a single Category
 
     list:
-    List view of types
+    List view of Categorys
     
-    add:
-    Add new type
+    create:
+    Add new Category
     
     update:
-    Update existing type
+    Update existing Category
+    
+    patch:
+    Partially update existing Category
+    
+    delete:
+    Delete a Category
     """
-    queryset = Type.objects.all()
-    serializer_class = TypeSerializer
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class ItemViewSet(viewsets.ModelViewSet):
+    """
+    View set for Item
+
+    retrieve:
+    Detail view of a single Item
+
+    list:
+    List view of Items
+
+    create:
+    Add new Item
+
+    update:
+    Update existing Item
+    
+    patch:
+    Partially update existing Type
+    
+    delete:
+    Delete a Type
+    """
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer

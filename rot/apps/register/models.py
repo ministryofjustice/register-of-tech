@@ -16,30 +16,34 @@ class TimestampedUserModelMixin:
     modified = models.DateTimeField(auto_now=True)
 
 
-class Type(MPTTModel, TimestampedUserModelMixin):
+DEFAULT_SCHEMA = {}
+
+
+class Category(MPTTModel, TimestampedUserModelMixin):
     """
-    Type of Item in list - Software, API, etc.
-    Allows for nesting of types i.e. API could be nested within Software
+    Category of Item in list - Software, API, etc.
+    Allows for nesting of Categorys i.e. API could be nested within Software
     
-    Defines schema for all items that relate to this type
+    Defines schema for all items that relate to this Category
     
     Schema format is tbd but could possibly use Django Rest Framework field 
-    types for validation.
+    Categorys for validation.
     
     Maybe something like:
     
     {
         "field_name": {
-            "type": "DRFFieldType",
+            "Category": "DRFFieldCategory",
             "required": true
         }
     }
     
     """
     name = models.CharField(max_length=100)
-    schema = JSONField()
+    schema = JSONField(default=DEFAULT_SCHEMA)
     parent = TreeForeignKey('self', null=True, blank=True,
                             related_name='children', db_index=True)
+    airtable_id = models.CharField(max_length=50, null=True, blank=True)
 
 
 class ItemRelation(models.Model):
@@ -65,11 +69,11 @@ class Item(models.Model, TimestampedUserModelMixin):
     Item is the base data record.
     
     Data attributes can be stored in data json b field and must adhere to 
-    the schema from the related type.
+    the schema from the related Category.
     """
     name = models.CharField(max_length=100)
     description = models.TextField(null=True)
-    type = models.ForeignKey('Type')
+    category = models.ForeignKey('Category')
     links = models.ManyToManyField(
         'self',
         through='ItemRelation',
@@ -78,3 +82,4 @@ class Item(models.Model, TimestampedUserModelMixin):
     )
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='items')
     data = JSONField()
+    airtable_id = models.CharField(max_length=50, null=True, blank=True)
