@@ -87,6 +87,11 @@ class Item(models.Model, TimestampedUserModelMixin):
 
 
 class BusinessArea(MPTTModel, TimestampedUserModelMixin):
+    """
+    Business Area
+    
+    Nested model to allow for sub areas
+    """
     name = models.CharField(max_length=100)
     description = models.TextField(null=True)
     parent = TreeForeignKey('self', null=True, blank=True,
