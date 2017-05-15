@@ -151,7 +151,7 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'person.Person'
 
 AIRTABLE_API_KEY = os.environ.get('AIRTABLE_API_KEY')
-AIRTABLE_API = os.environ.get('AIRTABLE_API')
+AIRTABLE_API_ID = os.environ.get('AIRTABLE_API_ID')
 
 try:
     from .local import *

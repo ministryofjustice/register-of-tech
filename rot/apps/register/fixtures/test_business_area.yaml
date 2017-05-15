@@ -1,0 +1,4 @@
+- model: register.businessarea
+  pk: 1
+  fields: {name: Unknown, description: Filler for unknown Business Area, parent: null,
+    lft: 1, rght: 2, tree_id: 1, level: 0}
