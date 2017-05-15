@@ -2,33 +2,10 @@
 from django.conf import settings
 from django.core.management import BaseCommand
 
-import requests
+from airtable.airtable import Airtable
 
 from person.models import Person
-from register.models import Item, Category
-
-
-class AirTableClient:
-    def __init__(self, endpoint, key):
-        self.endpoint = endpoint
-        self.key = key
-        self.data = {}
-
-    def get(self, table):
-        if table not in self.data:
-            headers = {
-                'Authorization': 'Bearer {key}'.format(key=self.key)
-            }
-            url = '{base}{table}'.format(base=self.endpoint, table=table)
-            resp = requests.get(url, headers=headers)
-            self.data[table] = resp.json()['records']
-        return self.data[table]
-
-    def get_record_by_id(self, table, id):
-        if table not in self.data:
-            self.get(table)
-        item = next(iter(filter(lambda x: x['id'] == id, self.data[table])))
-        return item['fields']
+from register.models import Item, Category, BusinessArea
 
 
 class Command(BaseCommand):
@@ -36,32 +13,29 @@ class Command(BaseCommand):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.airtable = AirTableClient(
-            settings.AIRTABLE_API,
+        self.airtable = Airtable(
+            settings.AIRTABLE_API_ID,
             settings.AIRTABLE_API_KEY)
 
     def handle(self, *args, **options):
-        self._load('Category', self._load_Category)
+        self._load('Organisation', self._load_business_area)
+        self._load('Category', self._load_category)
         self._load('Person', self._load_person)
         self._load('Service', self._load_item)
 
     def _load(self, table, load_func):
-        records = self.airtable.get(table)
-
-        for record in records:
+        for record in self.airtable.iterate(table, view='Grid view'):
             id = record['id']
             record = record['fields']
             if record:
                 load_func(record, table, id)
 
-    def _load_Category(self, record, table, id):
-        category, created = Category.objects.get_or_create(name=record['Name'])
+    def _load_category(self, record, table, id):
+        category, created = Category.objects.get_or_create(
+            name=record['Name'])
 
         if record.get('Parent'):
-            parent_record = self.airtable.get_record_by_id(
-                table, record.get('Parent')[0])
-            parent, pcreated = Category.objects.get_or_create(
-                name=parent_record['Name'])
+            parent = Category.objects.get(airtable_id=record.get('Parent')[0])
             category.parent = parent
         schema = {
 
@@ -69,6 +43,18 @@ class Command(BaseCommand):
         category.airtable_id = id
         category.schema = schema
         category.save()
+
+    def _load_business_area(self, record, table, id):
+        business_area, created = BusinessArea.objects.get_or_create(
+            name=record['Name'])
+
+        if record.get('Parent'):
+            parent = BusinessArea.objects.get(
+                airtable_id=record.get('Parent')[0])
+            business_area.parent = parent
+        business_area.airtable_id = id
+        business_area.description = record.get('Description')
+        business_area.save()
 
     def _load_person(self, record, table, id):
         names = record['Name'].split(', ')
@@ -105,11 +91,19 @@ class Command(BaseCommand):
         else:
             category = Category.objects.get(pk=1)
 
+        if record.get('Organisation'):
+            business_area_id = record['Organisation'][0]
+            business_area = BusinessArea.objects.filter(
+                airtable_id=business_area_id)[0]
+        else:
+            business_area = BusinessArea.objects.get(pk=1)
+
         item, created = Item.objects.get_or_create(
             name=record['Name'],
             description=record.get('Description'),
             owner=owner,
             category=category,
+            area=business_area,
             data={},
         )
 

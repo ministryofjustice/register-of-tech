@@ -27,13 +27,13 @@ class Category(MPTTModel, TimestampedUserModelMixin):
     Defines schema for all items that relate to this Category
     
     Schema format is tbd but could possibly use Django Rest Framework field 
-    Categorys for validation.
+    types for validation.
     
     Maybe something like:
     
     {
         "field_name": {
-            "Category": "DRFFieldCategory",
+            "type": "DRFFieldType",
             "required": true
         }
     }
@@ -71,9 +71,10 @@ class Item(models.Model, TimestampedUserModelMixin):
     Data attributes can be stored in data json b field and must adhere to 
     the schema from the related Category.
     """
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=200)
     description = models.TextField(null=True)
     category = models.ForeignKey('Category')
+    area = models.ForeignKey('BusinessArea')
     links = models.ManyToManyField(
         'self',
         through='ItemRelation',
@@ -82,4 +83,12 @@ class Item(models.Model, TimestampedUserModelMixin):
     )
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='items')
     data = JSONField()
+    airtable_id = models.CharField(max_length=50, null=True, blank=True)
+
+
+class BusinessArea(MPTTModel, TimestampedUserModelMixin):
+    name = models.CharField(max_length=100)
+    description = models.TextField(null=True)
+    parent = TreeForeignKey('self', null=True, blank=True,
+                            related_name='children', db_index=True)
     airtable_id = models.CharField(max_length=50, null=True, blank=True)
