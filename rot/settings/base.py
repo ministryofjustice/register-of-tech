@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
 THIRD_PARTY_APPS = [
     'django_gov',
+    'oauth2_provider',
     'rest_framework',
     'rest_framework_swagger',
 ]
@@ -152,6 +153,17 @@ AUTH_USER_MODEL = 'person.Person'
 
 AIRTABLE_API_KEY = os.environ.get('AIRTABLE_API_KEY')
 AIRTABLE_API_ID = os.environ.get('AIRTABLE_API_ID')
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100,
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    )
+}
 
 try:
     from .local import *
