@@ -14,8 +14,8 @@ import os
 import sys
 
 from django_gov.settings import (
-    REST_FRAMEWORK, API_VERSION, SWAGGER_SETTINGS, PING_JSON_KEYS,
-    HEALTHCHECKS, AUTODISCOVER_HEALTHCHECKS, CORS_ORIGIN_ALLOW_ALL)
+    API_VERSION, SWAGGER_SETTINGS, PING_JSON_KEYS, HEALTHCHECKS,
+    AUTODISCOVER_HEALTHCHECKS, CORS_ORIGIN_ALLOW_ALL)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 THIRD_PARTY_APPS = [
     'django_gov',
     'oauth2_provider',
+    'corsheaders',
     'rest_framework',
     'rest_framework_swagger',
 ]
@@ -74,6 +75,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'rot.urls'
