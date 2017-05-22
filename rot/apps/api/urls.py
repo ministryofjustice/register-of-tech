@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^', include('django_gov.urls')),
     url(r'^docs', schema_view, name='api-docs'),
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]
