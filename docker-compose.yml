@@ -1,0 +1,24 @@
+version: '2'
+services:
+  db:
+    build: docker/postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+  web:
+    build: .
+    ports:
+     - "8000:8000"
+    links:
+     - db
+    environment:
+      ENV: local
+      PORT: 8000
+      DEBUG: "True"
+      DJANGO_SECRET_KEY: BIG_SECRET
+      DJANGO_SETTINGS_MODULE: rot.settings.base
+      DB_NAME: rot
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: db
+      DB_PORT: 5432
