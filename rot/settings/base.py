@@ -168,6 +168,20 @@ REST_FRAMEWORK = {
     )
 }
 
+# RAVEN SENTRY CONFIG
+if 'SENTRY_DSN' in os.environ:
+    RAVEN_CONFIG = {
+        'dsn': os.environ.get('SENTRY_DSN')
+    }
+
+    INSTALLED_APPS += [
+        'raven.contrib.django.raven_compat',
+    ]
+
+    MIDDLEWARE = [
+        'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
+    ] + MIDDLEWARE
+
 try:
     from .local import *
 except ImportError:
