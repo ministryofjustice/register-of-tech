@@ -19,6 +19,7 @@ from django.contrib import admin
 from api import urls as api_urls
 
 urlpatterns = [
+    url(r'^', include('django_gov.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api/v1/', include(api_urls), name='api'),
 ]
