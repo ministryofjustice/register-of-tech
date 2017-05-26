@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import sys
 
+import requests
+
 from django_gov.settings import (
     API_VERSION, SWAGGER_SETTINGS, PING_JSON_KEYS, HEALTHCHECKS,
     AUTODISCOVER_HEALTHCHECKS, CORS_ORIGIN_ALLOW_ALL)
@@ -37,8 +39,16 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'CHANGE_ME')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
+    '.compute-1.amazonaws.com',
+    '.elb.amazonaws.com',
     os.environ.get('ALLOWED_HOST', '*')
 ]
+
+try:
+    EC2_IP = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4').text
+    ALLOWED_HOSTS.append(EC2_IP)
+except requests.exceptions.RequestException:
+    pass
 
 # Application definition
 
