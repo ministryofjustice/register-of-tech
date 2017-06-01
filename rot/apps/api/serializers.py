@@ -50,7 +50,7 @@ class PeopleSerializer(serializers.ModelSerializer):
                   'peoplefinder']
 
 
-class ItemSerializer(serializers.ModelSerializer):
+class ItemSerializer(BaseItemSerializer):
     owner = PeopleSerializer(many=False)
     category = CategorySerializer(many=False)
     area = BusinessAreaSerializer(many=False)
@@ -58,3 +58,9 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ['id', 'name', 'description', 'category', 'area', 'owner']
+
+    def create(self, validated_data):
+        super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        super().update(instance, validated_data)
