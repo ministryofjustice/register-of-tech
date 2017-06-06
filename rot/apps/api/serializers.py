@@ -15,11 +15,11 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'parent']
 
 
-class NestedCategorySerializer(CategorySerializer):
+class CategoryListSerializer(CategorySerializer):
     children = serializers.SerializerMethodField('_get_children')
 
     def _get_children(self, obj):
-        serializer = NestedCategorySerializer(obj.children.all(), many=True)
+        serializer = CategoryListSerializer(obj.children.all(), many=True)
         return serializer.data
 
     class Meta(CategorySerializer.Meta):
@@ -32,11 +32,11 @@ class BusinessAreaSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'description']
 
 
-class NestedBusinessAreaSerializer(BusinessAreaSerializer):
+class BusinessAreaListSerializer(BusinessAreaSerializer):
     children = serializers.SerializerMethodField('_get_children')
 
     def _get_children(self, obj):
-        serializer = NestedBusinessAreaSerializer(obj.children.all(), many=True)
+        serializer = BusinessAreaListSerializer(obj.children.all(), many=True)
         return serializer.data
 
     class Meta(BusinessAreaSerializer.Meta):
@@ -50,11 +50,13 @@ class PeopleSerializer(serializers.ModelSerializer):
                   'peoplefinder']
 
 
-class ItemSerializer(serializers.ModelSerializer):
-    owner = PeopleSerializer(many=False)
-    category = CategorySerializer(many=False)
-    area = BusinessAreaSerializer(many=False)
-
+class ItemSerializer(BaseItemSerializer):
     class Meta:
         model = Item
         fields = ['id', 'name', 'description', 'category', 'area', 'owner']
+
+
+class ItemListSerializer(BaseItemSerializer):
+    owner = PeopleSerializer(many=False)
+    category = CategorySerializer(many=False)
+    area = BusinessAreaSerializer(many=False)
