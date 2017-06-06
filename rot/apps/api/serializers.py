@@ -29,7 +29,7 @@ class CategoryListSerializer(CategorySerializer):
 class BusinessAreaSerializer(serializers.ModelSerializer):
     class Meta:
         model = BusinessArea
-        fields = ['id', 'name', 'description']
+        fields = ['id', 'name', 'description', 'parent']
 
 
 class BusinessAreaListSerializer(BusinessAreaSerializer):
