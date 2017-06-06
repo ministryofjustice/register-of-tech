@@ -17,7 +17,7 @@ class BaseModelViewSet(viewsets.ModelViewSet):
                                     self.serializer_class)
 
 
-class CategoryViewSet(viewsets.ModelViewSet):
+class CategoryViewSet(BaseModelViewSet):
     """
     View set for Category
 
@@ -74,7 +74,7 @@ class ItemViewSet(viewsets.ModelViewSet):
         'list': ItemListSerializer,
     }
 
-class BusinessAreaViewSet(viewsets.ModelViewSet):
+class BusinessAreaViewSet(BaseModelViewSet):
     """
     View set for BusinessArea
 
