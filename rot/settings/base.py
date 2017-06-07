@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import sys
 
+import requests
+
 from django_gov.settings import (
     API_VERSION, SWAGGER_SETTINGS, PING_JSON_KEYS, HEALTHCHECKS,
     AUTODISCOVER_HEALTHCHECKS, CORS_ORIGIN_ALLOW_ALL)
@@ -36,8 +38,17 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'CHANGE_ME')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.compute-1.amazonaws.com',
+    '.elb.amazonaws.com',
+    os.environ.get('ALLOWED_HOST', '*')
+]
 
+try:
+    EC2_IP = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4').text
+    ALLOWED_HOSTS.append(EC2_IP)
+except requests.exceptions.RequestException:
+    pass
 
 # Application definition
 
@@ -167,6 +178,20 @@ REST_FRAMEWORK = {
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     )
 }
+
+# RAVEN SENTRY CONFIG
+if 'SENTRY_DSN' in os.environ:
+    RAVEN_CONFIG = {
+        'dsn': os.environ.get('SENTRY_DSN')
+    }
+
+    INSTALLED_APPS += [
+        'raven.contrib.django.raven_compat',
+    ]
+
+    MIDDLEWARE = [
+        'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
+    ] + MIDDLEWARE
 
 try:
     from .local import *
