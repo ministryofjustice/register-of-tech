@@ -167,6 +167,7 @@ AUTH_USER_MODEL = 'person.Person'
 
 AIRTABLE_API_KEY = os.environ.get('AIRTABLE_API_KEY')
 AIRTABLE_API_ID = os.environ.get('AIRTABLE_API_ID')
+AIRTABLE_WRITE_API_ID = os.environ.get('AIRTABLE_WRITE_API_ID')
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
