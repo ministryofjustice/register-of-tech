@@ -85,6 +85,9 @@ class Item(models.Model, TimestampedUserModelMixin):
     data = JSONField()
     airtable_id = models.CharField(max_length=50, null=True, blank=True)
 
+    class Meta:
+        ordering = ['name']
+
 
 class BusinessArea(MPTTModel, TimestampedUserModelMixin):
     """
