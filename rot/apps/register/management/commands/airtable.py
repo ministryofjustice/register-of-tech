@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from collections import defaultdict
+
 from django.conf import settings
 from django.core.management import BaseCommand
 
@@ -9,15 +11,90 @@ from register.models import Item, Category, BusinessArea
 
 
 class Command(BaseCommand):
-    help = "Loads MVP data in from Airtable"
+    help = "Loads and writes MVP data from Airtable"
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self):
+        super().__init__()
+        self.airtable = None
+        self._cache = defaultdict(dict)
+
+    def add_arguments(self, parser):
+        parser.add_argument(
+            'action', choices=['get', 'put'],
+            help='get from airtable or write to airtable')
+
+    def handle(self, *args, **options):
+        if options['action'] == 'put':
+            self._write_all()
+        elif options['action'] == 'get':
+            self._load_all()
+
+    def _write_all(self):
+        self.airtable = Airtable(
+            settings.AIRTABLE_WRITE_API_ID,
+            settings.AIRTABLE_API_KEY)
+        self._write(BusinessArea, 'Organisation', self._write_business_area)
+        self._write(Category, 'Category', self._write_category)
+        self._write(Person, 'Person', self._write_person)
+        self._write(Item, 'Service', self._write_item)
+
+    def _delete_all_from_table(self, table):
+        for record in self.airtable.iterate(table, view='Grid view'):
+            self.airtable.delete(table, record['id'])
+
+    def _write(self, model, table, write_func):
+        self._delete_all_from_table(table)
+        for obj in model.objects.all():
+            try:
+                created = self.airtable.create(table, write_func(obj))
+                self._cache[table][created['id']] = created
+                obj.airtable_id = created['id']
+                obj.save()
+            except Exception as e:
+                self.stderr.write(e)
+                self.stderr.write(
+                    'Failed to write {data}'.format(data = write_func(obj)))
+
+    def _write_business_area(self, obj):
+        parents = []
+        if obj.parent:
+            parents = [obj.parent.airtable_id]
+        return {
+            'Name': obj.name,
+            'Description': obj.description,
+            "Parent": parents,
+        }
+
+    def _write_category(self, obj):
+        parents = []
+        if obj.parent:
+            parents = [obj.parent.airtable_id]
+        return {
+            'Name': obj.name,
+            "Parent": parents,
+        }
+
+    def _write_person(self, obj):
+        return {
+            'Name': '{first} {last}'.format(
+                first=obj.first_name, last=obj.last_name),
+            'Email': obj.email,
+            'People Finder link': obj.peoplefinder
+        }
+
+    def _write_item(self, obj):
+        return {
+            'Name': obj.name,
+            'Description': obj.description,
+            'Owner': [obj.owner.airtable_id],
+            'Service Category': [obj.category.airtable_id],
+            'Organisation': [obj.area.airtable_id],
+        }
+
+    def _load_all(self):
         self.airtable = Airtable(
             settings.AIRTABLE_API_ID,
             settings.AIRTABLE_API_KEY)
-
-    def handle(self, *args, **options):
         self._load('Organisation', self._load_business_area)
         self._load('Category', self._load_category)
         self._load('Person', self._load_person)
