@@ -77,35 +77,36 @@ class Command(BaseCommand):
 
     def _load_item(self, record, table, id):
         owner = None
-        if record.get('Owner'):
-            owner_id = record['Owner'][0]
-            owners = Person.objects.filter(airtable_id=owner_id)
-            if owners:
-                owner = owners[0]
-        if not owner:
-            owner = Person.objects.get(pk=2)
+        if record.get('Name'):
+            if record.get('Owner'):
+                owner_id = record['Owner'][0]
+                owners = Person.objects.filter(airtable_id=owner_id)
+                if owners:
+                    owner = owners[0]
+            if not owner:
+                owner = Person.objects.get(pk=2)
 
-        if record.get('Service Category'):
-            category_id = record['Service Category'][0]
-            category = Category.objects.filter(airtable_id=category_id)[0]
-        else:
-            category = Category.objects.get(pk=1)
+            if record.get('Service Category'):
+                category_id = record['Service Category'][0]
+                category = Category.objects.filter(airtable_id=category_id)[0]
+            else:
+                category = Category.objects.get(pk=1)
 
-        if record.get('Organisation'):
-            business_area_id = record['Organisation'][0]
-            business_area = BusinessArea.objects.filter(
-                airtable_id=business_area_id)[0]
-        else:
-            business_area = BusinessArea.objects.get(pk=1)
+            if record.get('Organisation'):
+                business_area_id = record['Organisation'][0]
+                business_area = BusinessArea.objects.filter(
+                    airtable_id=business_area_id)[0]
+            else:
+                business_area = BusinessArea.objects.get(pk=1)
 
-        item, created = Item.objects.get_or_create(
-            name=record['Name'],
-            description=record.get('Description'),
-            owner=owner,
-            category=category,
-            area=business_area,
-            data={},
-        )
+            item, created = Item.objects.get_or_create(
+                name=record['Name'],
+                description=record.get('Description'),
+                owner=owner,
+                category=category,
+                area=business_area,
+                data={},
+            )
 
-        item.airtable_id = id
-        item.save()
+            item.airtable_id = id
+            item.save()
