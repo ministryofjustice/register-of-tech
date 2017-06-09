@@ -65,6 +65,7 @@ THIRD_PARTY_APPS = [
     'django_gov',
     'oauth2_provider',
     'corsheaders',
+    'guardian',
     'rest_framework',
     'rest_framework_swagger',
 ]
@@ -179,6 +180,11 @@ REST_FRAMEWORK = {
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     )
 }
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'guardian.backends.ObjectPermissionBackend',
+)
 
 # RAVEN SENTRY CONFIG
 if 'SENTRY_DSN' in os.environ:
