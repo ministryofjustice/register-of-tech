@@ -9,15 +9,21 @@ from person.models import Person
 from register.models import Category, Item, BusinessArea
 
 
-class BaseModelViewSet(viewsets.ModelViewSet):
+class BaseNestedModelViewSet(viewsets.ModelViewSet):
     serializers = {}
 
     def get_serializer_class(self):
         return self.serializers.get(self.action,
                                     self.serializer_class)
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.action == 'list':
+            queryset = queryset.filter(level=0)
+        return queryset
 
-class CategoryViewSet(BaseModelViewSet):
+
+class CategoryViewSet(BaseNestedModelViewSet):
     """
     View set for Category
 
@@ -39,7 +45,7 @@ class CategoryViewSet(BaseModelViewSet):
     delete:
     Delete a Category
     """
-    queryset = Category.objects.filter(level=0)
+    queryset = Category.objects.all()
     serializer_class = CategorySerializer
     serializers = {
         'list': CategoryListSerializer,
@@ -74,7 +80,7 @@ class ItemViewSet(viewsets.ModelViewSet):
         'list': ItemListSerializer,
     }
 
-class BusinessAreaViewSet(BaseModelViewSet):
+class BusinessAreaViewSet(BaseNestedModelViewSet):
     """
     View set for BusinessArea
 
@@ -96,7 +102,7 @@ class BusinessAreaViewSet(BaseModelViewSet):
     delete:
     Delete a BusinessArea
     """
-    queryset = BusinessArea.objects.filter(level=0)
+    queryset = BusinessArea.objects.all()
     serializer_class = BusinessAreaSerializer
     serializers = {
         'list': BusinessAreaListSerializer,
