@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from rest_framework import viewsets
 
+from api.permissions import DjangoObjectPermissionsAnonReadOnly
 from api.serializers import (
     CategoryListSerializer, ItemSerializer, BusinessAreaListSerializer,
     PeopleSerializer, ItemListSerializer, CategorySerializer,
@@ -133,3 +134,4 @@ class PeopleViewSet(viewsets.ModelViewSet):
     """
     queryset = Person.objects.all()
     serializer_class = PeopleSerializer
+    permission_classes = (DjangoObjectPermissionsAnonReadOnly, )
