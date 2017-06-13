@@ -188,6 +188,8 @@ AUTHENTICATION_BACKENDS = (
     'guardian.backends.ObjectPermissionBackend',
 )
 
+LOGIN_URL = '/login/'
+
 # RAVEN SENTRY CONFIG
 if 'SENTRY_DSN' in os.environ:
     RAVEN_CONFIG = {
