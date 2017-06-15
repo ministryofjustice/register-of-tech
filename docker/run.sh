@@ -6,7 +6,7 @@ set -e
 /usr/bin/python3 manage.py  migrate --run-syncdb --settings rot.settings.base --noinput
 
 # Load fixtures
-/usr/bin/python3 manage.py loaddata test_categories test_business_area
+/usr/bin/python3 manage.py loaddata test_categories test_business_area groups
 
 # Run server
 /usr/bin/uwsgi --http-socket :$1 --plugin python --ini /app/conf/uwsgi.ini
