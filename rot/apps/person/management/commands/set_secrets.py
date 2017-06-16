@@ -21,7 +21,7 @@ class Command(BaseCommand):
                 person.first_name = 'Super'
                 person.last_name = 'User'
                 person.email = os.environ.get('DEFAULT_EMAIL_FROM')
-            person.password = os.environ.get('SUPERUSER_PASSWORD')
+            person.set_password(os.environ.get('SUPERUSER_PASSWORD'))
             person.save()
 
     def _set_application_secrets(self):
