@@ -9,7 +9,7 @@
 - model: auth.group
   pk: 2
   fields:
-    name: Super
+    name: Edit
     permissions:
     - [add_businessarea, register, businessarea]
     - [change_businessarea, register, businessarea]
