@@ -1,4 +1,5 @@
 - model: register.businessarea
   pk: 1
   fields: {name: Unknown, description: Filler for unknown Business Area, parent: null,
-    lft: 1, rght: 2, tree_id: 1, level: 0}
+    lft: 1, rght: 2, tree_id: 1, level: 0, created: '2017-05-10 13:33:58.852398+00:00',
+    modified: '2017-05-10 13:33:58.852398+00:00'}

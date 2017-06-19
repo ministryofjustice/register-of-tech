@@ -8,18 +8,23 @@ from mptt.models import MPTTModel, TreeForeignKey
 from register.constants import RELATIONSHIPS
 
 
-class TimestampedUserModelMixin:
+class TimestampedUserModel(models.Model):
     created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, related_name='items_created', null=True,
+        settings.AUTH_USER_MODEL,
+        related_name='%(app_label)s_%(class)s_created',
+        null=True,
         blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
 
 
 DEFAULT_SCHEMA = {}
 
 
-class Category(MPTTModel, TimestampedUserModelMixin):
+class Category(MPTTModel, TimestampedUserModel):
     """
     Category of Item in list - Software, API, etc.
     Allows for nesting of Categorys i.e. API could be nested within Software
@@ -46,7 +51,7 @@ class Category(MPTTModel, TimestampedUserModelMixin):
     airtable_id = models.CharField(max_length=50, null=True, blank=True)
 
 
-class ItemRelation(models.Model):
+class ItemRelation(TimestampedUserModel):
     """
     Through model for linked relations between Items
     
@@ -64,7 +69,7 @@ class ItemRelation(models.Model):
                                related_name='to_obj')
 
 
-class Item(models.Model, TimestampedUserModelMixin):
+class Item(TimestampedUserModel):
     """
     Item is the base data record.
     
@@ -89,7 +94,7 @@ class Item(models.Model, TimestampedUserModelMixin):
         ordering = ['name']
 
 
-class BusinessArea(MPTTModel, TimestampedUserModelMixin):
+class BusinessArea(MPTTModel, TimestampedUserModel):
     """
     Business Area
     
