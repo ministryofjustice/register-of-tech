@@ -87,7 +87,7 @@ class Item(TimestampedUserModel):
         symmetrical=False,
     )
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='items')
-    data = JSONField()
+    data = JSONField(default={})
     airtable_id = models.CharField(max_length=50, null=True, blank=True)
 
     class Meta:
