@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class RegisterConfig(AppConfig):
+class RegisterAppConfig(AppConfig):
     name = 'register'
 
     def ready(self):

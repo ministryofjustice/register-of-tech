@@ -16,16 +16,17 @@ def all_perms(user, obj, func=assign_perm):
 
 
 @receiver(pre_save, sender=Item)
-def user_post_save(sender, instance, **kwargs):
-    if instance.created_by:
-        all_perms(instance.created_by, instance, func=remove_perm)
-    if instance.owner:
-        all_perms(instance.owner, instance, func=remove_perm)
+def user_pre_save(sender, instance, **kwargs):
+    if instance.pk:
+        if instance.created_by:
+            all_perms(instance.created_by, instance, func=remove_perm)
+        if instance.owner:
+            all_perms(instance.owner, instance, func=remove_perm)
 
 
 @receiver(post_save, sender=Item)
 def user_post_save(sender, instance, **kwargs):
     if instance.created_by:
         all_perms(instance.created_by, instance)
-    if instance.owner:
+    if instance.owner and instance.owner != instance.created_by:
         all_perms(instance.owner, instance)
