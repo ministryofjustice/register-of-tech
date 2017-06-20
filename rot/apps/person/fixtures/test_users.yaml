@@ -19,8 +19,8 @@
     password: pbkdf2_sha256$36000$nCNSWVycj2Qv$rA1EL7Z7gWvnYjsNrzAkAB8GBQlZX6AJQ0mq3cm8UNc=
     last_login: null
     is_superuser: false
-    username: unknown
-    first_name: 'Unknown'
+    username: standard
+    first_name: 'Standard'
     last_name: 'User'
     email: u@rot.com
     is_staff: false
