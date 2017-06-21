@@ -16,8 +16,8 @@ def all_perms(user, obj, func=assign_perm):
 
 
 @receiver(pre_save, sender=Item)
-def user_pre_save(sender, instance, **kwargs):
-    if instance.pk:
+def user_pre_save(sender, instance, created=False, **kwargs):
+    if not created and instance.pk:
         if instance.created_by:
             all_perms(instance.created_by, instance, func=remove_perm)
         if instance.owner:
