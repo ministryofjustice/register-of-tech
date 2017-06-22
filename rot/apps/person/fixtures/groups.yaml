@@ -23,3 +23,9 @@
     - [add_itemrelation, register, itemrelation]
     - [change_itemrelation, register, itemrelation]
     - [delete_itemrelation, register, itemrelation]
+- model: auth.group
+  pk: 3
+  fields:
+    name: Standard
+    permissions:
+    - [add_item, register, item]

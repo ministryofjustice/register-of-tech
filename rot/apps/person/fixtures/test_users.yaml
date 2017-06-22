@@ -26,7 +26,7 @@
     is_staff: false
     is_active: true
     date_joined: 2017-05-10 13:33:58.852398+00:00
-    groups: []
+    groups: [3]
     user_permissions: []
 - model: person.person
   pk: 3
