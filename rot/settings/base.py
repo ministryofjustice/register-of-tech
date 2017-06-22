@@ -44,11 +44,13 @@ ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST', '*')
 ]
 
-try:
-    EC2_IP = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4').text
-    ALLOWED_HOSTS.append(EC2_IP)
-except requests.exceptions.RequestException:
-    pass
+if 'ALLOWED_HOST' in os.environ:
+    try:
+        EC2_IP = requests.get(
+            'http://169.254.169.254/latest/meta-data/local-ipv4').text
+        ALLOWED_HOSTS.append(EC2_IP)
+    except requests.exceptions.RequestException:
+        pass
 
 # Application definition
 
@@ -65,6 +67,7 @@ THIRD_PARTY_APPS = [
     'django_gov',
     'oauth2_provider',
     'corsheaders',
+    'guardian',
     'rest_framework',
     'rest_framework_swagger',
 ]
@@ -160,6 +163,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATICFILES_DIRS = [
+    location('static-src')
+]
+
 STATIC_URL = '/static/'
 STATIC_ROOT = location('static')
 
@@ -173,12 +180,19 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'api.permissions.DjangoObjectPermissionsAnonReadOnly',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     )
 }
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'guardian.backends.ObjectPermissionBackend',
+)
+
+LOGIN_URL = '/login/'
 
 # RAVEN SENTRY CONFIG
 if 'SENTRY_DSN' in os.environ:

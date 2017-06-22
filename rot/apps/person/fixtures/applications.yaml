@@ -1,0 +1,6 @@
+- model: oauth2_provider.application
+  pk: 1
+  fields: {client_id: q5g5m6dHkV3iE3BU6jVoxtBi8R8i9dOwpw66mrm7, user: null, redirect_uris: 'http://reg.pokearound.co.uk/oauth',
+    client_type: public, authorization_grant_type: authorization-code, client_secret: Ngw3bhgZAjRvhlUoAKnjgHXiQ2HJzhigWVC0YRm7jllNwKSuaXca451NJ5QnwYpWnF37VChiz4cTH6pPzKGbClr37PWGM0otT01bPKg4AZVdpFrP7zDDgdCwBygYIiTy,
+    name: reg.pokearound.co.uk, skip_authorization: true, created: ! '2017-06-15 14:57:21.315850+00:00',
+    updated: ! '2017-06-15 14:57:21.315875+00:00'}

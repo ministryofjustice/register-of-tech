@@ -19,12 +19,42 @@
     password: pbkdf2_sha256$36000$nCNSWVycj2Qv$rA1EL7Z7gWvnYjsNrzAkAB8GBQlZX6AJQ0mq3cm8UNc=
     last_login: null
     is_superuser: false
-    username: unknown
-    first_name: 'Unknown'
+    username: standard
+    first_name: 'Standard'
     last_name: 'User'
     email: u@rot.com
     is_staff: false
     is_active: true
     date_joined: 2017-05-10 13:33:58.852398+00:00
-    groups: []
+    groups: [3]
+    user_permissions: []
+- model: person.person
+  pk: 3
+  fields:
+    password: pbkdf2_sha256$36000$nCNSWVycj2Qv$rA1EL7Z7gWvnYjsNrzAkAB8GBQlZX6AJQ0mq3cm8UNc=
+    last_login: null
+    is_superuser: false
+    username: admin
+    first_name: 'Admin'
+    last_name: 'User'
+    email: u@rot.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-05-10 13:33:58.852398+00:00
+    groups: [1]
+    user_permissions: []
+- model: person.person
+  pk: 4
+  fields:
+    password: pbkdf2_sha256$36000$nCNSWVycj2Qv$rA1EL7Z7gWvnYjsNrzAkAB8GBQlZX6AJQ0mq3cm8UNc=
+    last_login: null
+    is_superuser: false
+    username: edit
+    first_name: 'Edit'
+    last_name: 'User'
+    email: u@rot.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-05-10 13:33:58.852398+00:00
+    groups: [2]
     user_permissions: []

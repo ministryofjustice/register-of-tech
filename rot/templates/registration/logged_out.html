@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <main id="content" role="main">
+    <div>
+      <h1>{% trans 'You are logged out' %}</h1>
+      <p>{% trans "Thanks for spending some quality time with the Web site today." %}</p>
+      <p><a href="/login/?next=/">{% trans 'Log in again' %}</a></p>
+    </div>
+  </main>
+{% endblock %}
