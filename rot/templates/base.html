@@ -1,1 +1,8 @@
 {% extends 'govuk_template/base.html' %}
+
+{% load staticfiles %}
+
+{% block head %}
+  {{ block.super }}
+  <link href="{% static 'stylesheets/gov-uk-elements.css' %}" media="all" rel="stylesheet" />
+{% endblock %}

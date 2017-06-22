@@ -1,0 +1,31 @@
+- model: auth.group
+  pk: 1
+  fields:
+    name: User Admin
+    permissions:
+    - [add_person, person, person]
+    - [change_person, person, person]
+    - [delete_person, person, person]
+- model: auth.group
+  pk: 2
+  fields:
+    name: Edit
+    permissions:
+    - [add_businessarea, register, businessarea]
+    - [change_businessarea, register, businessarea]
+    - [delete_businessarea, register, businessarea]
+    - [add_category, register, category]
+    - [change_category, register, category]
+    - [delete_category, register, category]
+    - [add_item, register, item]
+    - [change_item, register, item]
+    - [delete_item, register, item]
+    - [add_itemrelation, register, itemrelation]
+    - [change_itemrelation, register, itemrelation]
+    - [delete_itemrelation, register, itemrelation]
+- model: auth.group
+  pk: 3
+  fields:
+    name: Standard
+    permissions:
+    - [add_item, register, item]
