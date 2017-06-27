@@ -32,6 +32,10 @@ class ItemPermissionAPITestCase(APITestCase):
         resp = self.client.delete(url)
         self.assertEqual(resp.status_code, 204, 'Owner can delete')
 
+    def assertPatchNotAuthenticated(self, url, code=401):
+        resp = self.client.patch(url)
+        self.assertEqual(resp.status_code, code, 'Can not patch')
+
     def _test_user_permission(self, user, obj):
         url = reverse('item-list')
 
@@ -41,6 +45,8 @@ class ItemPermissionAPITestCase(APITestCase):
         data['Namme'] = 'New Name'
 
         url = reverse('item-detail', args=[obj.pk])
+
+        self.assertPatchNotAuthenticated(url)
 
         self.client.force_authenticate(user)
         self.asserUpdatePermission(url, data)
@@ -61,6 +67,9 @@ class ItemPermissionAPITestCase(APITestCase):
         data['Namme'] = 'New Name'
 
         url = reverse('item-detail', args=[item.pk])
+
+        self.client.force_authenticate(self.standard_user)
+        self.assertPatchNotAuthenticated(url, 403)
 
 
 
