@@ -10,7 +10,9 @@ class ItemPermissionAPITestCase(APITestCase):
     fixtures = ['groups', 'test_users', 'applications']
 
     def setUp(self):
+        self.super_user = Person.objects.get(pk=1)
         self.standard_user = Person.objects.get(pk=2)
+        self.adminuser = Person.objects.get(pk=3)
         self.edit_user = Person.objects.get(pk=4)
 
         self.cat = mommy.make('register.Category')
@@ -55,6 +57,14 @@ class ItemPermissionAPITestCase(APITestCase):
     def test_standard_user_has_object_permissions_on_own_item(self):
         item = self._create_item(self.standard_user)
         self._test_user_permission(self.standard_user, item)
+
+    def test_edit_user_has_object_permissions_on_all_items(self):
+        item = self._create_item(self.standard_user)
+        self._test_user_permission(self.edit_user, item)
+
+    def test_super_user_has_object_permissions_on_all_items(self):
+        item = self._create_item(self.standard_user)
+        self._test_user_permission(self.edit_user, item)
 
     def test_standard_user_has_no_permission(self):
         item = self._create_item(self.edit_user)
