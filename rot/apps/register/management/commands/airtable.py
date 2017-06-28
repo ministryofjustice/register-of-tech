@@ -180,10 +180,12 @@ class Command(BaseCommand):
                 name=record['Name'],
                 description=record.get('Description'),
                 owner=owner,
-                category=category,
-                area=business_area,
                 data={},
             )
+
+            # TODO - Allow adding multiple categories and areas from airtable
+            item.categories.add(category)
+            item.areas.add(business_area)
 
             item.airtable_id = id
             item.save()

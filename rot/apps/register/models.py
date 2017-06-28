@@ -78,8 +78,8 @@ class Item(TimestampedUserModel):
     """
     name = models.CharField(max_length=200)
     description = models.TextField(null=True)
-    category = models.ForeignKey('Category')
-    area = models.ForeignKey('BusinessArea')
+    categories = models.ManyToManyField('Category')
+    areas = models.ManyToManyField('BusinessArea')
     links = models.ManyToManyField(
         'self',
         through='ItemRelation',
