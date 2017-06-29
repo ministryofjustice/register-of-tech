@@ -12,7 +12,7 @@ class BaseItemSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name', 'parent']
+        fields = ['id', 'name', 'parent_id']
 
 
 class CategoryListSerializer(CategorySerializer):
@@ -29,7 +29,7 @@ class CategoryListSerializer(CategorySerializer):
 class BusinessAreaSerializer(serializers.ModelSerializer):
     class Meta:
         model = BusinessArea
-        fields = ['id', 'name', 'description', 'parent']
+        fields = ['id', 'name', 'description', 'parent_id']
 
 
 class BusinessAreaListSerializer(BusinessAreaSerializer):
@@ -53,7 +53,7 @@ class PeopleSerializer(serializers.ModelSerializer):
 class ItemSerializer(BaseItemSerializer):
     class Meta:
         model = Item
-        fields = ['id', 'name', 'description', 'category', 'area', 'owner']
+        fields = ['id', 'name', 'description', 'categories', 'areas', 'owner_id']
 
 
 class ItemListSerializer(BaseItemSerializer):

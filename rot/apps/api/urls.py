@@ -12,7 +12,7 @@ schema_view = get_swagger_view(title='Register of Things')
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'categories', CategoryViewSet)
 router.register(r'items', ItemViewSet)
-router.register(r'business_area', BusinessAreaViewSet)
+router.register(r'areas', BusinessAreaViewSet)
 router.register(r'people', PeopleViewSet)
 
 urlpatterns = [

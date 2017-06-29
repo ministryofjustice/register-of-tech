@@ -23,7 +23,7 @@ class BaseNestedModelViewSet(viewsets.ModelViewSet):
         return queryset
 
 
-class CategoryViewSet(BaseNestedModelViewSet):
+class CategoryViewSet(viewsets.ModelViewSet):
     """
     View set for Category
 
@@ -80,7 +80,7 @@ class ItemViewSet(viewsets.ModelViewSet):
         'list': ItemListSerializer,
     }
 
-class BusinessAreaViewSet(BaseNestedModelViewSet):
+class BusinessAreaViewSet(viewsets.ModelViewSet):
     """
     View set for BusinessArea
 
