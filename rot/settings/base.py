@@ -178,7 +178,7 @@ AIRTABLE_WRITE_API_ID = os.environ.get('AIRTABLE_WRITE_API_ID')
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 100,
+    'PAGE_SIZE': 20,
     'DEFAULT_PERMISSION_CLASSES': (
         'api.permissions.DjangoObjectPermissionsAnonReadOnly',
     ),
