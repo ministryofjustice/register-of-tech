@@ -54,7 +54,7 @@ class ItemSerializer(BaseItemSerializer):
     class Meta:
         model = Item
         fields = ['id', 'name', 'description', 'categories', 'areas',
-                  'owner_id']
+                  'owner']
 
 
 class ItemListSerializer(BaseItemSerializer):
