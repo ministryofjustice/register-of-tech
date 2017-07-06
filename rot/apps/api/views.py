@@ -8,6 +8,9 @@ from api.serializers import (
 from person.models import Person
 from register.models import Category, Item, BusinessArea
 
+from rot.apps.api.pagination import LargeResultsSetPagination, \
+    SmallResultsSetPagination
+
 
 class BaseNestedModelViewSet(viewsets.ModelViewSet):
     serializers = {}
@@ -50,6 +53,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializers = {
         'list': CategoryListSerializer,
     }
+    pagination_class = LargeResultsSetPagination
 
 
 class ItemViewSet(viewsets.ModelViewSet):
@@ -79,6 +83,8 @@ class ItemViewSet(viewsets.ModelViewSet):
     serializers = {
         'list': ItemListSerializer,
     }
+    pagination_class = SmallResultsSetPagination
+
 
 class BusinessAreaViewSet(viewsets.ModelViewSet):
     """
@@ -107,6 +113,7 @@ class BusinessAreaViewSet(viewsets.ModelViewSet):
     serializers = {
         'list': BusinessAreaListSerializer,
     }
+    pagination_class = LargeResultsSetPagination
 
 
 class PeopleViewSet(viewsets.ModelViewSet):
@@ -133,3 +140,4 @@ class PeopleViewSet(viewsets.ModelViewSet):
     """
     queryset = Person.objects.all()
     serializer_class = PeopleSerializer
+    pagination_class = LargeResultsSetPagination
