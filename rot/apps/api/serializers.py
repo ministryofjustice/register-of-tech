@@ -46,15 +46,17 @@ class BusinessAreaListSerializer(BusinessAreaSerializer):
 class PeopleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ['id', 'first_name', 'last_name', 'email', 'role',
-                  'peoplefinder']
+        fields = [
+            'id', 'first_name', 'last_name', 'email', 'role', 'peoplefinder'
+        ]
 
 
 class ItemSerializer(BaseItemSerializer):
     class Meta:
         model = Item
-        fields = ['id', 'name', 'description', 'categories', 'areas',
-                  'owner']
+        fields = [
+            'id', 'name', 'description', 'categories', 'areas', 'owner'
+        ]
 
 
 class ItemListSerializer(BaseItemSerializer):
