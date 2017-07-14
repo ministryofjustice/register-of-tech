@@ -2,14 +2,21 @@
 from rest_framework import viewsets
 
 from api.serializers import (
-    CategoryListSerializer, ItemSerializer, BusinessAreaListSerializer,
-    PeopleSerializer, ItemListSerializer, CategorySerializer,
-    BusinessAreaSerializer)
+    CategoryListSerializer,
+    ItemSerializer,
+    BusinessAreaListSerializer,
+    PeopleSerializer,
+    ItemListSerializer,
+    CategorySerializer,
+    BusinessAreaSerializer
+)
 from person.models import Person
 from register.models import Category, Item, BusinessArea
 
-from rot.apps.api.pagination import LargeResultsSetPagination, \
+from rot.apps.api.pagination import (
+    LargeResultsSetPagination,
     SmallResultsSetPagination
+)
 
 
 class BaseNestedModelViewSet(viewsets.ModelViewSet):
