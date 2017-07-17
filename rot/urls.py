@@ -23,6 +23,7 @@ from api import urls as api_urls
 urlpatterns = [
     url(r'^', include('django_gov.urls')),
     url(r'^', include('django.contrib.auth.urls')),
+    url(r'^', include('haystack.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api/v1/', include(api_urls), name='api'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

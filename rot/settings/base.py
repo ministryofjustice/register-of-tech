@@ -67,6 +67,7 @@ THIRD_PARTY_APPS = [
     'django_gov',
     'oauth2_provider',
     'corsheaders',
+    'haystack',
     'guardian',
     'rest_framework',
     'rest_framework_swagger',
@@ -193,6 +194,14 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_URL = '/login/'
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
+        'URL': os.environ.get('ELASTICSEARCH_ENDPOINT', 'http://127.0.0.1:9200/'),
+        'INDEX_NAME': 'haystack',
+    },
+}
 
 # RAVEN SENTRY CONFIG
 if 'SENTRY_DSN' in os.environ:
