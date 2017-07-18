@@ -13,6 +13,31 @@ This leaves Postgres as the initial choice for prototyping.
 
 (It might be worth prototyping Airtable as a data store and creating an interface which uses its api. We would need to create out own auth/permissions etc in a separate DB)
 
+Dango Rest Framework
+--------------------
+
+Django Rest Framework has been used to create an API for all the data. This has been done with the idea of maybe making the data available to other applications at some stage.
+
+Elasticsearch
+-------------
+
+Elastic search has been used mainly for its faceted search. Although the search functionality will be fairly simple it is more difficult to get faceted search through DB queries. It is also fairly easy to set up Elasticsearch.
+
+Authentication
+--------------
+
+For now we are using Oauth2 for authentication. In the future we will probably switch to OIDC/Oauth provider such as Auth0 for single sign on. The API is available read-only for non authenticated users but is restricted by ip.
+
+There are three types of permission groups
+
+Standard:
+Can add items and update/delete items that that they hav added or are an owner of.
+
+Editor:
+Can add, edit and delete any item.
+
+User admin:
+Can edit users, user permissions and groups.
 
 2017-05-09
 ----------
@@ -31,6 +56,10 @@ Item Types (eg Software, API etc.) may need to be nested in a tree structure. (O
 
 An 'Owner' can be considered to be someone who is a user of the system and will therefore have a user account or one will be created.
 
+2017-06-18
+----------
+
+There is no longer a need for users to define attributes or update the item schema. The schema and attributes will be defined in code as database columns. Any updates to schema will require a DB migration to add new fields.
 
 Latest Graphviz model structure
 -------------------------------
