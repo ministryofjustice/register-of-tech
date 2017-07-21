@@ -12,9 +12,19 @@ connections.create_connection(hosts=[settings.ELASTICSEARCH_ENDPOINT])
 
 
 class BaseSearchIndexMixin:
+    def prepare(self, obj):
+        raise NotImplementedError(
+            'Override this method to return a dict of fields')
+
+    def _prepare(self, obj):
+        self.__init__(
+            **self.prepare(obj)
+        )
+
     @classmethod
     def index(cls, obj):
-        index = cls.create(obj)
+        index = cls()
+        index._prepare(obj)
         index.save()
         return index.to_dict(include_meta=True)
 
@@ -46,10 +56,10 @@ class ItemIndex(DocType, BaseSearchIndexMixin):
     class Meta:
         index = 'item'
 
-    @classmethod
-    def create(cls, obj):
-        return cls(
+    def prepare(self, obj):
+        return dict(
             meta={'id': obj.pk},
+            pk=obj.pk,
             name=obj.name,
             description=obj.description,
             categories=[c.name for c in obj.categories.all()],
