@@ -2,13 +2,36 @@
 from django.conf import settings
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
-from elasticsearch_dsl import DocType, Integer, Text, Date
+from elasticsearch_dsl import (
+    Date,
+    DocType,
+    FacetedSearch,
+    Integer,
+    Keyword,
+    Text,
+    analyzer,
+    tokenizer,
+    TermsFacet,
+)
 from elasticsearch_dsl.connections import connections
 
 from register.models import Item
 
 
 connections.create_connection(hosts=[settings.ELASTICSEARCH_ENDPOINT])
+
+
+ngram_analyzer = analyzer('ngram_analyzer',
+    tokenizer=tokenizer('trigram', 'nGram', min_gram=3, max_gram=3),
+    filter=['lowercase']
+)
+
+
+class NgramText(Text):
+    def __init__(self, *args, **kwargs):
+        if 'analyzer' not in kwargs:
+            kwargs['analyzer'] = ngram_analyzer
+        super().__init__(*args, **kwargs)
 
 
 class BaseSearchIndexMixin:
@@ -45,10 +68,10 @@ class ItemIndex(DocType, BaseSearchIndexMixin):
     queryset = Item.objects.all()
 
     pk = Integer()
-    name = Text()
-    description = Text()
-    categories = Text(multi=True)
-    areas = Text(multi=True)
+    name = NgramText()
+    description = NgramText()
+    categories = Keyword(multi=True)
+    areas = Keyword(multi=True)
     owner = Text()
     created = Date()
     modified = Date()
@@ -70,5 +93,15 @@ class ItemIndex(DocType, BaseSearchIndexMixin):
         )
 
 
+class ItemSearch(FacetedSearch):
+    doc_types = [ItemIndex, ]
 
+    fields = [
+        'pk', 'name', 'description', 'areas', 'categories', 'owner',
+        'created', 'modified'
+    ]
 
+    facets = {
+        'areas': TermsFacet(field='areas'),
+        'categories': TermsFacet(field='categories'),
+    }

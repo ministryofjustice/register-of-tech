@@ -10,6 +10,6 @@ class ElasticItemSerializer(ElasticModelSerializer):
         model = Item
         es_model = ItemIndex
         fields = (
-            'pk', 'name', 'description', 'areas', 'categories', 'created',
-            'modified'
+            'pk', 'name', 'description', 'areas', 'categories', 'owner',
+            'created', 'modified'
         )

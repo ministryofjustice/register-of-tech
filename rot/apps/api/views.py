@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch, ImproperlyConfigured
+from elasticsearch_dsl import Search
 from rest_framework import viewsets
 from rest_framework_elasticsearch import es_views, es_filters
 
@@ -18,7 +19,7 @@ from api.serializers import (
 )
 from person.models import Person
 from register.models import Category, Item, BusinessArea
-from search.indexes import ItemIndex
+from search.indexes import ItemIndex, ItemSearch
 from search.pagination import ElasticPageNumberPagination
 
 
@@ -174,3 +175,15 @@ class ItemSearchView(es_views.ListElasticAPIView):
         'areas',
         'categories',
     )
+
+    def get_es_search(self):
+        if self.es_model is None:
+            msg = (
+                "Cannot use %s on a view which does not have the 'es_model'"
+            )
+            raise ImproperlyConfigured(msg % self.__class__.__name__)
+        index = self.es_model()._get_index()
+        es_client = self.get_es_client()
+        s = Search(using=es_client, index=index)
+
+        return s
