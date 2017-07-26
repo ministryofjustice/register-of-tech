@@ -5,17 +5,24 @@ from rest_framework import routers
 from rest_framework_swagger.views import get_swagger_view
 
 from api.views import (
-    CategoryViewSet, ItemViewSet, BusinessAreaViewSet, PeopleViewSet)
+    BusinessAreaViewSet,
+    CategoryViewSet,
+    ItemViewSet,
+    ItemSearchView,
+    PeopleViewSet,
+)
 
 schema_view = get_swagger_view(title='Register of Things')
 
 router = routers.DefaultRouter(trailing_slash=False)
-router.register(r'categories', CategoryViewSet)
-router.register(r'items', ItemViewSet)
-router.register(r'areas', BusinessAreaViewSet)
-router.register(r'people', PeopleViewSet)
+router.register(r'categories', CategoryViewSet, base_name='category')
+# router.register(r'items/search', ItemSearchView.as_view(), base_name='item-search')
+router.register(r'items', ItemViewSet, base_name='item')
+router.register(r'areas', BusinessAreaViewSet, base_name='area')
+router.register(r'people', PeopleViewSet, base_name='people')
 
 urlpatterns = [
+    url(r'items/search', ItemSearchView.as_view(), name='item-search'),
     url(r'^', include(router.urls)),
     url(r'^', include('django_gov.urls')),
     url(r'^docs', schema_view, name='api-docs'),

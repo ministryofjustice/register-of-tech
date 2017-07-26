@@ -4,5 +4,7 @@ django-gov==0.2.1
 django-guardian==1.4.8
 django-mptt==0.8.7
 django-oauth-toolkit==1.0.0
+django-rest-elasticsearch==0.3.0
+elasticsearch==5.4.0
 psycopg2==2.7.1
 raven==6.0.0

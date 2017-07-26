@@ -5,3 +5,7 @@ DEBUG = True
 INSTALLED_APPS += ['django_extensions']
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+AIRTABLE_API_KEY = 'your_api_key'
+AIRTABLE_API_ID = 'airtable_app_id'
+AIRTABLE_WRITE_API_ID = 'airtable_write_app_id'

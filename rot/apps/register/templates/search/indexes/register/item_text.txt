@@ -1,0 +1,8 @@
+{{ object.name }}
+{% for cat in object.categories.all %}
+{{ cat.name }}
+{% endfor %}
+{% for area in object.areas.all %}
+{{ area.name }}
+{% endfor %}
+{{ object.owner.get_full_name }}

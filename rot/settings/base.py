@@ -70,6 +70,7 @@ THIRD_PARTY_APPS = [
     'guardian',
     'rest_framework',
     'rest_framework_swagger',
+    'search',
 ]
 
 PROJECT_APPS = [
@@ -193,6 +194,8 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_URL = '/login/'
+
+ELASTICSEARCH_ENDPOINT = os.environ.get('ELASTICSEARCH_ENDPOINT', 'http://127.0.0.1:9200/')
 
 # RAVEN SENTRY CONFIG
 if 'SENTRY_DSN' in os.environ:

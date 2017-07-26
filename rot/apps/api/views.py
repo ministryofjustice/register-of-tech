@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
+from elasticsearch import Elasticsearch, ImproperlyConfigured
+from elasticsearch_dsl import Search
 from rest_framework import viewsets
+from rest_framework_elasticsearch import es_views, es_filters
 
+from api.pagination import (
+    LargeResultsSetPagination,
+    SmallResultsSetPagination
+)
 from api.serializers import (
     CategoryListSerializer,
     ItemSerializer,
@@ -12,11 +19,8 @@ from api.serializers import (
 )
 from person.models import Person
 from register.models import Category, Item, BusinessArea
-
-from rot.apps.api.pagination import (
-    LargeResultsSetPagination,
-    SmallResultsSetPagination
-)
+from search.indexes import ItemIndex, ItemSearch
+from search.pagination import ElasticPageNumberPagination
 
 
 class BaseNestedModelViewSet(viewsets.ModelViewSet):
@@ -148,3 +152,38 @@ class PeopleViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PeopleSerializer
     pagination_class = LargeResultsSetPagination
+
+
+class ItemSearchView(es_views.ListElasticAPIView):
+    es_paginator = ElasticPageNumberPagination()
+    queryset = Item.objects.all()
+    es_client = Elasticsearch()
+    es_model = ItemIndex
+    es_filter_backends = (
+        es_filters.ElasticFieldsFilter,
+        es_filters.ElasticSearchFilter
+    )
+    es_filter_fields = (
+        es_filters.ESFieldFilter('area', 'areas'),
+        es_filters.ESFieldFilter('category', 'categories'),
+        es_filters.ESFieldFilter('owner', 'owner'),
+    )
+    es_search_fields = (
+        'name',
+        'description',
+        'owner',
+        'areas',
+        'categories',
+    )
+
+    def get_es_search(self):
+        if self.es_model is None:
+            msg = (
+                "Cannot use %s on a view which does not have the 'es_model'"
+            )
+            raise ImproperlyConfigured(msg % self.__class__.__name__)
+        index = self.es_model()._get_index()
+        es_client = self.get_es_client()
+        s = Search(using=es_client, index=index)
+
+        return s
