@@ -71,6 +71,18 @@ You will need to log in to airtable.com and  be given access to the database and
 
     ./manage.py airtable get
 
+Start Elasticsearch: (in another tab)
+
+.. code:: bash
+
+    elasticsearch
+
+Re-build the cache:
+
+.. code:: bash
+
+    ./manage.py build_index
+
 Start the dev server:
 
 .. code:: bash
