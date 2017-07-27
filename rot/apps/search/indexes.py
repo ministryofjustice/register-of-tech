@@ -67,14 +67,11 @@ class BaseSearchIndexMixin:
 class ItemIndex(DocType, BaseSearchIndexMixin):
     queryset = Item.objects.all()
 
-    pk = Integer()
     name = NgramText()
     description = NgramText()
     categories = Keyword(multi=True)
     areas = Keyword(multi=True)
     owner = Text()
-    created = Date()
-    modified = Date()
 
     class Meta:
         index = 'item'
@@ -82,14 +79,11 @@ class ItemIndex(DocType, BaseSearchIndexMixin):
     def prepare(self, obj):
         return dict(
             meta={'id': obj.pk},
-            pk=obj.pk,
             name=obj.name,
             description=obj.description,
             categories=[c.name for c in obj.categories.all()],
             areas=[a.name for a in obj.areas.all()],
             owner=obj.owner.get_full_name(),
-            created=obj.created,
-            modified=obj.modified,
         )
 
 
@@ -97,8 +91,7 @@ class ItemSearch(FacetedSearch):
     doc_types = [ItemIndex, ]
 
     fields = [
-        'pk', 'name', 'description', 'areas', 'categories', 'owner',
-        'created', 'modified'
+        'name', 'description', 'areas', 'categories', 'owner'
     ]
 
     facets = {
