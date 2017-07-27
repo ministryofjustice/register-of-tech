@@ -50,6 +50,9 @@ class Category(MPTTModel, TimestampedUserModel):
                             related_name='children', db_index=True)
     airtable_id = models.CharField(max_length=50, null=True, blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class ItemRelation(TimestampedUserModel):
     """
@@ -105,3 +108,6 @@ class BusinessArea(MPTTModel, TimestampedUserModel):
     parent = TreeForeignKey('self', null=True, blank=True,
                             related_name='children', db_index=True)
     airtable_id = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return self.name

@@ -70,13 +70,14 @@ THIRD_PARTY_APPS = [
     'guardian',
     'rest_framework',
     'rest_framework_swagger',
-    'search',
+    'formtools',
 ]
 
 PROJECT_APPS = [
     'api',
     'person',
     'register',
+    'search',
 ]
 
 INSTALLED_APPS += THIRD_PARTY_APPS
@@ -95,19 +96,27 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'rot.urls'
 
+TEMPLATE_OPTIONS = {
+    'context_processors': [
+        'django.template.context_processors.debug',
+        'django.template.context_processors.request',
+        'django.contrib.auth.context_processors.auth',
+        'django.contrib.messages.context_processors.messages',
+    ],
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [location('templates'), ],
         'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
+        'OPTIONS': TEMPLATE_OPTIONS,
+    },
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [location('templates/frontend'), ],
+        'APP_DIRS': True,
+        'OPTIONS': TEMPLATE_OPTIONS,
     },
 ]
 

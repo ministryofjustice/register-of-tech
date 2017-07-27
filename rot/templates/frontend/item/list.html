@@ -1,0 +1,16 @@
+{% extends "frontend/base.html" %}
+
+{% block content %}
+  <main id="content" role="main">
+    <h2>Item List  - placeholder</h2>
+
+    <form>
+      {{ form }}
+    </form>
+
+    {% for item in items %}
+      <p>{{ item.name }}</p>
+      <p>{{ item.description }}</p>
+    {% endfor %}
+  </main>
+{% endblock %}
