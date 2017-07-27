@@ -2,6 +2,7 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import Http404
 from django.shortcuts import render_to_response
+from django.views.generic import DetailView
 from django.views.generic import TemplateView
 from elasticsearch_dsl import Search
 from formtools.wizard.views import SessionWizardView
@@ -45,6 +46,12 @@ class ItemListView(TemplateView):
 
         return self.render_to_response(
             self.get_context_data(items=items, form=form))
+
+
+class ItemDetailView(DetailView):
+
+    template_name = "frontend/item/detail.html"
+    model = Item
 
 
 class AddItemWizard(SessionWizardView):
