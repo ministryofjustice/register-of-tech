@@ -4,7 +4,6 @@ from django.http import Http404
 from django.shortcuts import render_to_response
 from django.views.generic import DetailView
 from django.views.generic import TemplateView
-from elasticsearch_dsl import Search
 from formtools.wizard.views import SessionWizardView
 
 from frontend.forms import (
@@ -32,7 +31,7 @@ class ItemListView(TemplateView):
             count = faceted_search.count()
             response = faceted_search[:count].execute()
 
-            # TODO - Facets are structed like so. They will gove a count of
+            # TODO - Facets are structured like so. They will give a count of
             # categories and areas in the search
             # TODO - add category filtering
             for (tag, count, selected) in response.facets.categories:
