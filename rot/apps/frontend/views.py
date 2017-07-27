@@ -22,9 +22,9 @@ class ItemListView(TemplateView):
     template_name = "frontend/item/list.html"
     paginate_by = 20
 
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         page = request.GET.get('page', 1)
-        form = SearchForm(self.request.POST or None)
+        form = SearchForm(self.request.GET or None)
         if form.is_valid():
             # TODO - make this search return faceted results
             search_response = ItemSearch()
@@ -40,6 +40,8 @@ class ItemListView(TemplateView):
             items = paginator.page(page)
         except (PageNotAnInteger, EmptyPage):
             raise Http404('Page does not exist')
+
+        print(items)
 
         return self.render_to_response(
             self.get_context_data(items=items, form=form))
