@@ -9,4 +9,8 @@ coverage/*
 .idea
 
 *.DS_Store
+
 .venv/
+
+# node
+node_modules

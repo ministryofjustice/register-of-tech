@@ -1,0 +1,31 @@
+.cf:after,
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.item-card {
+  margin-bottom: 40px;
+  background-color: #efefef;
+  font-size: 1rem;
+  clear: both;
+  position: relative;
+}
+
+.item-card .card-row > div {
+  float: left;
+  padding: 10px;
+}
+
+.item-card .card-row:first-of-type {
+  border-bottom: 1px solid #fff;
+}
+
+.item-card .card-row .card-left {
+  width: calc(70% - 20px);
+}
+
+.item-card .card-row .card-right {
+  width: calc(25% - 20px);
+}
+
