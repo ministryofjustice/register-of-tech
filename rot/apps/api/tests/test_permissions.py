@@ -21,8 +21,8 @@ class ItemPermissionAPITestCase(APITestCase):
     def _create_item(self, user):
         return mommy.make(
             'register.Item',
-            category=self.cat,
-            area=self.ba,
+            categories=[self.cat],
+            areas=[self.ba],
             owner=user,
             created_by=user)
 
