@@ -1,0 +1,33 @@
+{
+  "name": "register-of-tech",
+  "version": "0.1.0",
+  "description": "Register of Tech",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ministryofjustice/register-of-tech.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/ministryofjustice/register-of-tech/issues"
+  },
+  "homepage": "https://github.com/ministryofjustice/register-of-tech#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^3.0.0",
+    "govuk-elements-sass": "^3.1.1",
+    "gulp": "^3.9.1",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-glob": "^1.0.8",
+    "gulp-watch": "^4.3.11",
+    "run-sequence": "^2.1.0"
+  }
+}
