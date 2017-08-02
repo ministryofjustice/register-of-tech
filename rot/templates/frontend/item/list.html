@@ -2,7 +2,10 @@
 
 {% block content %}
   <main id="content" role="main">
-    <h2 class="heading-large">Item List  - placeholder</h2>
+    <h2 class="heading-large">
+      <!-- presumably this should be dynamic -->
+      Services
+    </h2>
 
     <form>
       {{ form }}
@@ -24,16 +27,37 @@
             </div>
             <div class="card-right">
               <h3>Owner</h3>
-              <p>{{ item.owner }}</p>
+              <p><a href="/people/{{ item.owner.id }}">{{ item.owner.first_name }} {{ item.owner.last_name }}</a></p>
             </div>
           </div>
           <div class="card-row cf">
             <div class="card-left">
-              <p>{{ item.areas.all }}</p>
-              <p>{{ item.categories.all }}</p>
+              {% if item.areas.all.count %}
+              <p>Used by:
+                {% for area in item.areas.all %}
+                <a href="/areas/{{ area.id }}">{{ area }}</a>
+
+                {% endfor %}
+              </p>
+              {% else %}
+              <p>Not used</p>
+              {% endif %}
+
+              <p>Category:
+              {% if item.categories.all.count %}
+                {% for category in item.categories.all %}
+                <a href="/categories/{{ category.id }}">{{ category }}</a>
+
+                {% endfor %}
+              </p>
+              {% else %}
+              None
+              {% endif %}
+              </p>
+
             </div>
             <div class="card-right">
-              <p>Is this wrong?</p>
+              <p><a href="/services/{{ item.id }}">Is this information wrong?</a></p>
             </div>
           </div>
 
