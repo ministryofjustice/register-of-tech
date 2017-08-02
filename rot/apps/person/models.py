@@ -10,3 +10,4 @@ class Person(AbstractUser):
 
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'
+        ordering = ['last_name']
