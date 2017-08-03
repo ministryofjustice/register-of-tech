@@ -1,7 +1,26 @@
 {% extends "frontend/base.html" %}
 
 {% block content %}
-  <main id="content" role="main">
-    <h2>{{ object.name }}</h2>
-  </main>
+    <main id="content" role="main">
+        <h2>{{ object.name }}</h2>
+        <p>{{ object.description }}</p>
+
+        <h2>{{ object.owner.get_full_name }}</h2>
+        <p>{{ object.owner.email }}</p>
+
+        <h2>Used by</h2>
+        <ul>
+            {% for area in object.areas.all %}
+                <li id="{{ area.id }}">{{ area }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Categories</h2>
+        <ul>
+            {% for category in object.categories.all %}
+                <li id="{{ category.id }}">{{ category }}</li>
+            {% endfor %}
+        </ul>
+
+    </main>
 {% endblock %}
