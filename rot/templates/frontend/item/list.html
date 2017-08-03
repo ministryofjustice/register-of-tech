@@ -16,7 +16,17 @@
         filter stuff here
       </div>
       <div class="column-three-quarters">
-        {% for item in items %}
+          {% if items.has_previous %}
+              <a href="?page={{ items.previous_page_number }}">previous</a>
+          {% endif %}
+          <p>Showing {{ items.paginator.per_page }} per page. {{ items.start_index }} - {{ items.end_index }}
+              of {{ items.paginator.count }}.</p>
+          {% if items.has_next %}
+              <a href="?page={{ items.next_page_number }}">next</a>
+          {% endif %}
+          <p>Page {{ items.number }} of {{ items.paginator.num_pages }}.</p>
+
+          {% for item in items %}
 
         <div class="item-card cf">
 
