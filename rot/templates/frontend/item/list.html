@@ -9,6 +9,7 @@
 
     <form>
       {{ form }}
+        <button>Submit</button>
     </form>
 
     <div class="grid-row">
@@ -37,15 +38,15 @@
             </div>
             <div class="card-right">
               <h3>Owner</h3>
-              <p><a href="/people/{{ item.owner.id }}">{{ item.owner.first_name }} {{ item.owner.last_name }}</a></p>
+              <p><a href="/people/{{ item.owner }}">{{ item.owner }}</a></p>
             </div>
           </div>
           <div class="card-row cf">
             <div class="card-left">
-              {% if item.areas.all.count %}
+              {% if item.areas %}
               <p>Used by:
-                {% for area in item.areas.all %}
-                <a href="/areas/{{ area.id }}">{{ area }}</a>
+                {% for area in item.areas_object %}
+                <a href="/areas/{{ area.id }}">{{ area.name }}</a>
 
                 {% endfor %}
               </p>
@@ -54,9 +55,9 @@
               {% endif %}
 
               <p>Category:
-              {% if item.categories.all.count %}
-                {% for category in item.categories.all %}
-                <a href="/categories/{{ category.id }}">{{ category }}</a>
+              {% if item.categories %}
+                {% for category in item.categories_object %}
+                <a href="/categories/{{ category.id }}">{{ category.name }}</a>
 
                 {% endfor %}
               </p>

@@ -14,17 +14,16 @@ from elasticsearch_dsl import (
     TermsFacet,
 )
 from elasticsearch_dsl.connections import connections
+from elasticsearch_dsl.field import Object
 
 from register.models import Item
 
-
 connections.create_connection(hosts=[settings.ELASTICSEARCH_ENDPOINT])
 
-
 ngram_analyzer = analyzer('ngram_analyzer',
-    tokenizer=tokenizer('trigram', 'nGram', min_gram=3, max_gram=3),
-    filter=['lowercase']
-)
+                          tokenizer=tokenizer('trigram', 'nGram', min_gram=3, max_gram=3),
+                          filter=['lowercase']
+                          )
 
 
 class NgramText(Text):
@@ -67,11 +66,13 @@ class BaseSearchIndexMixin:
 class ItemIndex(DocType, BaseSearchIndexMixin):
     queryset = Item.objects.all()
 
-    name = NgramText()
+    name = NgramText(fields={'raw': Keyword()})
     description = NgramText()
     categories = Keyword(multi=True)
+    categories_object = Object()
     areas = Keyword(multi=True)
-    owner = Text()
+    areas_object = Object()
+    owner = Text(fields={'raw': Keyword()})
 
     class Meta:
         index = 'item'
@@ -82,7 +83,9 @@ class ItemIndex(DocType, BaseSearchIndexMixin):
             name=obj.name,
             description=obj.description,
             categories=[c.name for c in obj.categories.all()],
+            categories_object=[{"id": c.id, "name": c.name} for c in obj.categories.all()],
             areas=[a.name for a in obj.areas.all()],
+            areas_object=[{"id": a.id, "name": a.name} for a in obj.areas.all()],
             owner=obj.owner.get_full_name(),
         )
 

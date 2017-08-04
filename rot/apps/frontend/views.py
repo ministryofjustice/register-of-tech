@@ -24,31 +24,25 @@ class ItemListView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         page = request.GET.get('page', 1)
+
         form = SearchForm(self.request.GET or None)
         if form.is_valid():
-            query = form.cleaned_data['search']
-            faceted_search = ItemSearch(query)
-            count = faceted_search.count()
-            response = faceted_search[:count].execute()
+            faceted_search = ItemSearch(form.cleaned_data['search'], sort=form.cleaned_data['sort'] or None)
 
             # TODO - Facets are structured like so. They will give a count of
             # categories and areas in the search
             # TODO - add category filtering
-            for (tag, count, selected) in response.facets.categories:
-                print(tag, ' (SELECTED):' if selected else ':', count)
-
-            for (tag, count, selected) in response.facets.areas:
-                print(tag, ' (SELECTED):' if selected else ':', count)
-
-            facets = response.facets
-            objects = response
+            # for (tag, count, selected) in response.facets.categories:
+            #     print(tag, ' (SELECTED):' if selected else ':', count)
+            #
+            # for (tag, count, selected) in response.facets.areas:
+            #     print(tag, ' (SELECTED):' if selected else ':', count)
         else:
-            facets = None
-            objects = Item.objects.all()\
-                .select_related('owner')\
-                .prefetch_related('areas', 'categories')
+            faceted_search = ItemSearch(sort="name.raw")
 
-        paginator = Paginator(objects, self.paginate_by)
+        response = faceted_search[:faceted_search.count()].execute()
+
+        paginator = Paginator(response, self.paginate_by)
 
         try:
             items = paginator.page(page)
@@ -56,7 +50,7 @@ class ItemListView(TemplateView):
             raise Http404('Page does not exist')
 
         return self.render_to_response(
-            self.get_context_data(items=items, facets=facets, form=form))
+            self.get_context_data(items=items, facets=response.facets or None, form=form))
 
 
 class ItemDetailView(DetailView):

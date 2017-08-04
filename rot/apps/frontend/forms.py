@@ -18,7 +18,6 @@ class AddItemForm1(forms.Form):
     )
 
 
-
 class AddItemForm2(forms.Form):
     """
     Form for adding areas to an Item
@@ -52,4 +51,11 @@ class AddItemForm4(forms.Form):
 
 class SearchForm(forms.Form):
     """Search Form"""
+    SORT_CHOICES = (
+        ('name.raw', 'Name (asc)'),
+        ('-name.raw', 'Name (desc)'),
+        ('owner.raw', 'Owner (asc)'),
+        ('-owner.raw', 'Owner (desc)'),
+    )
     search = forms.CharField(max_length=100)
+    sort = forms.ChoiceField(choices=SORT_CHOICES, required=False)
