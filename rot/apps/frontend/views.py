@@ -27,7 +27,7 @@ class ItemListView(TemplateView):
 
         form = SearchForm(self.request.GET or None)
         if form.is_valid():
-            faceted_search = ItemSearch(form.cleaned_data['search'], sort=form.cleaned_data['sort'] or None)
+            faceted_search = ItemSearch(form.cleaned_data['search'] or None, sort=form.cleaned_data['sort'] or None)
 
             # TODO - Facets are structured like so. They will give a count of
             # categories and areas in the search
