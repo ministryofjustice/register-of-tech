@@ -18,7 +18,6 @@ from search.indexes import ItemSearch
 
 
 class ItemListView(TemplateView):
-
     template_name = "frontend/item/list.html"
     paginate_by = 20
 
@@ -27,16 +26,8 @@ class ItemListView(TemplateView):
 
         form = SearchForm(self.request.GET or None)
         if form.is_valid():
-            faceted_search = ItemSearch(form.cleaned_data['search'] or None, sort=form.cleaned_data['sort'] or None)
-
-            # TODO - Facets are structured like so. They will give a count of
-            # categories and areas in the search
-            # TODO - add category filtering
-            # for (tag, count, selected) in response.facets.categories:
-            #     print(tag, ' (SELECTED):' if selected else ':', count)
-            #
-            # for (tag, count, selected) in response.facets.areas:
-            #     print(tag, ' (SELECTED):' if selected else ':', count)
+            faceted_search = ItemSearch(form.cleaned_data['search'] or None, sort=form.cleaned_data['sort'] or None,
+                                        filters={'categories': form.cleaned_data['category'] or None})
         else:
             faceted_search = ItemSearch(sort="name.raw")
 
@@ -54,7 +45,6 @@ class ItemListView(TemplateView):
 
 
 class ItemDetailView(DetailView):
-
     template_name = "frontend/item/detail.html"
     model = Item
 

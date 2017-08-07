@@ -15,7 +15,9 @@
     <div class="grid-row">
 
       <div class="column-one-quarter">
-        filter stuff here
+        {% for name, count, selected in facets.categories %}
+            <a href="{% url 'services-list' %}?category={{ name }}">{{ name }} {{ count }} {% if selected %}*{% endif %}</a><br>
+        {% endfor %}
       </div>
 
       <div class="column-three-quarters">
@@ -53,7 +55,7 @@
               <p>Category:
               {% if item.categories %}
                 {% for category in item.categories_object %}
-                <a href="/categories/{{ category.id }}">{{ category.name }}</a>
+                <a href="{% url 'services-list' %}?category={{ category.name }}">{{ category.name }}</a>
 
                 {% endfor %}
               </p>
