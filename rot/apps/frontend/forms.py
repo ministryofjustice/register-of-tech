@@ -57,5 +57,5 @@ class SearchForm(forms.Form):
         ('owner.raw', 'Owner (asc)'),
         ('-owner.raw', 'Owner (desc)'),
     )
-    search = forms.CharField(max_length=100)
+    search = forms.CharField(max_length=100, required=False)
     sort = forms.ChoiceField(choices=SORT_CHOICES, required=False)
