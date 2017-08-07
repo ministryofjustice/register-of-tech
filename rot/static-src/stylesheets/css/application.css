@@ -28,4 +28,7 @@
 .item-card .card-row .card-right {
   width: calc(25% - 20px);
 }
+.item-count-summary {
+  margin: 32px 0;
+}
 
