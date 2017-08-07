@@ -9,25 +9,21 @@
 
     <form>
       {{ form }}
-        <button>Submit</button>
+      <button>Submit</button>
     </form>
 
     <div class="grid-row">
+
       <div class="column-one-quarter">
         filter stuff here
       </div>
-      <div class="column-three-quarters">
-          {% if items.has_previous %}
-              <a href="?page={{ items.previous_page_number }}">previous</a>
-          {% endif %}
-          <p>Showing {{ items.paginator.per_page }} per page. {{ items.start_index }} - {{ items.end_index }}
-              of {{ items.paginator.count }}.</p>
-          {% if items.has_next %}
-              <a href="?page={{ items.next_page_number }}">next</a>
-          {% endif %}
-          <p>Page {{ items.number }} of {{ items.paginator.num_pages }}.</p>
 
-          {% for item in items %}
+      <div class="column-three-quarters">
+
+        <p class="item-count-summary">Showing {{ items.paginator.per_page }} per page. {{ items.start_index }} - {{ items.end_index }}
+            of {{ items.paginator.count }}.</p>
+
+        {% for item in items %}
 
         <div class="item-card cf">
 
@@ -75,6 +71,33 @@
         </div>
 
         {% endfor %}
+
+        {# pagination #}
+        {% if items.has_other_pages %}
+        <nav class="govuk-previous-and-next-navigation" role="navigation" aria-label="Pagination">
+          <ul class="group">
+            {% if items.has_previous %}
+            <li class="previous-page">
+              <a href="?page={{ items.previous_page_number }}" rel="previous" >
+                <span class="pagination-part-title">Previous</span>
+                <!-- <span class="pagination-label">1 of 3</span> -->
+              </a>
+            </li>
+            {% endif %}
+            {% if items.has_next %}
+            <li class="next-page">
+              <a href="?page={{ items.next_page_number }}" rel="next">
+                <span class="pagination-part-title">Next</span>
+                <!-- <span class="pagination-label">3 of 3</span> -->
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
+        {% endif %}
+        {# end pagination #}
+
+
       </div>
     </div>
 

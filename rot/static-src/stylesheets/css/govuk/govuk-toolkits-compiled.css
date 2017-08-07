@@ -726,7 +726,7 @@ hr {
   text-transform: none;
   font-size: 18px;
   line-height: 1.2;
-  background-image: image-url("icon-pointer.png");
+  background-image: url("/static/images/icon-pointer.png");
   background-repeat: no-repeat;
   background-position: 100% 50%;
   padding: 0.36842em 2.15789em 0.21053em 0.84211em; }
@@ -738,7 +738,7 @@ hr {
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .button-start,
     .button-get-started {
-      background-image: image-url("icon-pointer-2x.png");
+      background-image: url("/static/images/icon-pointer-2x.png");
       background-size: 30px 19px; } }
 
 .icon {
@@ -749,199 +749,199 @@ hr {
 .icon-calendar {
   width: 27px;
   height: 27px;
-  background-image: image-url("icon-calendar.png"); }
+  background-image: url("/static/images/icon-calendar.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-calendar {
-      background-image: image-url("icon-calendar-2x.png");
+      background-image: url("/static/images/icon-calendar-2x.png");
       background-size: 100%; } }
 
 .icon-file-download {
   width: 30px;
   height: 39px;
-  background-image: image-url("icon-file-download.png"); }
+  background-image: url("/static/images/icon-file-download.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-file-download {
-      background-image: image-url("icon-file-download-2x.png");
+      background-image: url("/static/images/icon-file-download-2x.png");
       background-size: 100%; } }
 
 .icon-important {
   width: 35px;
   height: 35px;
-  background-image: image-url("icon-important.png"); }
+  background-image: url("/static/images/icon-important.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-important {
-      background-image: image-url("icon-important-2x.png");
+      background-image: url("/static/images/icon-important-2x.png");
       background-size: 100%; } }
 
 .icon-information {
   width: 27px;
   height: 27px;
-  background-image: image-url("icon-information.png"); }
+  background-image: url("/static/images/icon-information.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-information {
-      background-image: image-url("icon-information-2x.png");
+      background-image: url("/static/images/icon-information-2x.png");
       background-size: 100%; } }
 
 .icon-locator {
   width: 26px;
   height: 36px;
-  background-image: image-url("icon-locator.png"); }
+  background-image: url("/static/images/icon-locator.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-locator {
-      background-image: image-url("icon-locator-2x.png");
+      background-image: url("/static/images/icon-locator-2x.png");
       background-size: 100%; } }
 
 .icon-pointer {
   width: 30px;
   height: 19px;
-  background-image: image-url("icon-pointer.png"); }
+  background-image: url("/static/images/icon-pointer.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-pointer {
-      background-image: image-url("icon-pointer-2x.png");
+      background-image: url("/static/images/icon-pointer-2x.png");
       background-size: 100%; } }
 
 .icon-pointer-black {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-pointer-black.png"); }
+  background-image: url("/static/images/icon-pointer-black.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-pointer-black {
-      background-image: image-url("icon-pointer-black-2x.png");
+      background-image: url("/static/images/icon-pointer-black-2x.png");
       background-size: 100%; } }
 
 .icon-search {
   width: 30px;
   height: 22px;
-  background-image: image-url("icon-search.png"); }
+  background-image: url("/static/images/icon-search.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-search {
-      background-image: image-url("icon-search-2x.png");
+      background-image: url("/static/images/icon-search-2x.png");
       background-size: 100%; } }
 
 .icon-step-1 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-1.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-1.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-1 {
-      background-image: image-url("icon-steps/icon-step-1-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-1-2x.png");
       background-size: 100%; } }
 
 .icon-step-2 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-2.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-2.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-2 {
-      background-image: image-url("icon-steps/icon-step-2-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-2-2x.png");
       background-size: 100%; } }
 
 .icon-step-3 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-3.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-3.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-3 {
-      background-image: image-url("icon-steps/icon-step-3-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-3-2x.png");
       background-size: 100%; } }
 
 .icon-step-4 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-4.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-4.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-4 {
-      background-image: image-url("icon-steps/icon-step-4-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-4-2x.png");
       background-size: 100%; } }
 
 .icon-step-5 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-5.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-5.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-5 {
-      background-image: image-url("icon-steps/icon-step-5-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-5-2x.png");
       background-size: 100%; } }
 
 .icon-step-6 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-6.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-6.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-6 {
-      background-image: image-url("icon-steps/icon-step-6-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-6-2x.png");
       background-size: 100%; } }
 
 .icon-step-7 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-7.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-7.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-7 {
-      background-image: image-url("icon-steps/icon-step-7-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-7-2x.png");
       background-size: 100%; } }
 
 .icon-step-8 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-8.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-8.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-8 {
-      background-image: image-url("icon-steps/icon-step-8-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-8-2x.png");
       background-size: 100%; } }
 
 .icon-step-9 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-9.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-9.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-9 {
-      background-image: image-url("icon-steps/icon-step-9-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-9-2x.png");
       background-size: 100%; } }
 
 .icon-step-10 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-10.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-10.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-10 {
-      background-image: image-url("icon-steps/icon-step-10-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-10-2x.png");
       background-size: 100%; } }
 
 .icon-step-11 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-11.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-11.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-11 {
-      background-image: image-url("icon-steps/icon-step-11-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-11-2x.png");
       background-size: 100%; } }
 
 .icon-step-12 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-12.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-12.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-12 {
-      background-image: image-url("icon-steps/icon-step-12-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-12-2x.png");
       background-size: 100%; } }
 
 .icon-step-13 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-13.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-13.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-13 {
-      background-image: image-url("icon-steps/icon-step-13-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-13-2x.png");
       background-size: 100%; } }
 
 .icon-step-14 {
   width: 23px;
   height: 23px;
-  background-image: image-url("icon-steps/icon-step-14.png"); }
+  background-image: url("/static/images/icon-steps/icon-step-14.png"); }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .icon-step-14 {
-      background-image: image-url("icon-steps/icon-step-14-2x.png");
+      background-image: url("/static/images/icon-steps/icon-step-14-2x.png");
       background-size: 100%; } }
 
 .circle {
@@ -1476,7 +1476,7 @@ input[type=number] {
     font-size: 14px;
     line-height: 1.14286;
     float: left;
-    background-image: image-url("separator.png");
+    background-image: url("/static/images/separator.png");
     background-position: 0% 50%;
     background-repeat: no-repeat;
     list-style: none;
@@ -1489,7 +1489,7 @@ input[type=number] {
         line-height: 1.25; } }
     @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
       .breadcrumbs li {
-        background-image: image-url("separator-2x.png");
+        background-image: url("/static/images/separator-2x.png");
         background-size: 6px 11px; } }
     .breadcrumbs li:first-child {
       background-image: none;
@@ -1947,7 +1947,7 @@ body {
       text-transform: none;
       font-size: 14px;
       line-height: 1.14286;
-      background: image-url("breadcrumb-separator.png") 0% 50% no-repeat;
+      background: url("/static/images/breadcrumb-separator.png") 0% 50% no-repeat;
       float: left;
       list-style: none;
       margin-right: 0.5em;
@@ -2701,11 +2701,11 @@ a.button-save {
     left: 0;
     top: 50%;
     margin-top: -17px;
-    background: image-url("icon-important.png") no-repeat 0;
+    background: url("/static/images/icon-important.png") no-repeat 0;
     background-size: 34px 34px; }
     @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
       .notice .icon {
-        background: image-url("icon-important-2x.png") no-repeat 0;
+        background: url("/static/images/icon-important-2x.png") no-repeat 0;
         background-size: 34px 34px; } }
   .notice strong {
     display: block;
@@ -2960,7 +2960,7 @@ https://github.com/alphagov/static/blob/da8aeeaa749093eab30286d7fc9f965533b66f47
       float: right;
       text-align: right; }
     .govuk-previous-and-next-navigation li.next-page a:before {
-      background: transparent image-url("arrow-sprite.png") no-repeat -102px -11px;
+      background: transparent url("/static/images/arrow-sprite.png") no-repeat -102px -11px;
       margin: -4px -32px 0 0;
       display: block;
       float: right;
@@ -2968,7 +2968,7 @@ https://github.com/alphagov/static/blob/da8aeeaa749093eab30286d7fc9f965533b66f47
       height: 38px;
       content: " "; }
     .govuk-previous-and-next-navigation li.previous-page a:before {
-      background: transparent image-url("arrow-sprite.png") no-repeat -20px -11px;
+      background: transparent url("/static/images/arrow-sprite.png") no-repeat -20px -11px;
       margin: -4px 0 0 -32px;
       display: block;
       float: left;
