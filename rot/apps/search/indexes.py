@@ -67,6 +67,7 @@ class ItemIndex(DocType, BaseSearchIndexMixin):
     queryset = Item.objects.all()
 
     name = NgramText(fields={'raw': Keyword()})
+    slug = Keyword(index=False)
     description = NgramText()
     categories = Keyword(multi=True)
     categories_object = Object()
@@ -81,6 +82,7 @@ class ItemIndex(DocType, BaseSearchIndexMixin):
         return dict(
             meta={'id': obj.pk},
             name=obj.name,
+            slug=obj.slug,
             description=obj.description,
             categories=[c.name for c in obj.categories.all()],
             categories_object=[{"id": c.id, "name": c.name} for c in obj.categories.all()],

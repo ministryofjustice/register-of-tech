@@ -6,6 +6,6 @@ from frontend.views import ItemListView, ItemDetailView
 
 urlpatterns = [
     url(r'^services$', ItemListView.as_view(), name='services-list'),
-    url(r'^services/(?P<pk>[-\d]+)/$', ItemDetailView.as_view(),
+    url(r'^services/(?P<slug>[-\w\d]+)/$', ItemDetailView.as_view(),
         name='services-detail'),
 ]

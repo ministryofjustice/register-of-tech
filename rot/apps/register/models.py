@@ -2,6 +2,7 @@
 from django.conf import settings
 from django.db import models
 from django.contrib.postgres.fields import JSONField
+from django_extensions.db.fields import AutoSlugField
 
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -80,6 +81,7 @@ class Item(TimestampedUserModel):
     the schema from the related Category.
     """
     name = models.CharField(max_length=200)
+    slug = AutoSlugField(populate_from='name', overwrite=True)
     description = models.TextField(null=True)
     categories = models.ManyToManyField('Category')
     areas = models.ManyToManyField('BusinessArea')
