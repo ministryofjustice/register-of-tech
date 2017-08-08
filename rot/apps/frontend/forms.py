@@ -59,3 +59,4 @@ class SearchForm(forms.Form):
     )
     search = forms.CharField(max_length=100, required=False)
     sort = forms.ChoiceField(choices=SORT_CHOICES, required=False)
+    category = forms.CharField(max_length=100, required=False)
