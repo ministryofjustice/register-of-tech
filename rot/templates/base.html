@@ -1,5 +1,18 @@
 {% extends 'govuk_template/base.html' %}
 
+{% block header_class %}with-proposition{% endblock %}
+
+{% block proposition_header %}
+<div class="header-proposition">
+  <div class="content">
+    <!-- <a href="#proposition-links" class="js-header-toggle menu">Menu</a> -->
+    <nav id="proposition-menu">
+      <a id="proposition-name" href="{% url 'services-list' %}">Find a technology or service</a>
+    </nav>
+  </div>
+</div>
+{% endblock %}
+
 {% load staticfiles %}
 
 {% block head %}
