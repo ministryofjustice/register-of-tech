@@ -65,3 +65,12 @@ Latest Graphviz model structure
 -------------------------------
 
 .. image:: graph_model/latest.png
+
+2017-08-09
+----------
+
+After a discussion it has been decided to use Elasticsearch (ES) just for the list and search page.
+
+We can continue to use idiomatic Django and best practices with the postgres database (DB) backend, leveraging class based views (CBV) and mixins etc.
+
+The link between ES and the DB can be maintained by indexing DB ids or in some instances indexing a slug then using that as the lookup field - which eliminates indexing of superfluous postgres DB data and enables the use of standard django CBV.
