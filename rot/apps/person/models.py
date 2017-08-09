@@ -11,3 +11,6 @@ class Person(AbstractUser):
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'
         ordering = ['last_name']
+
+    def __str__(self):
+        return self.get_full_name()

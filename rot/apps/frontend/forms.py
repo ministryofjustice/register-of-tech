@@ -11,7 +11,7 @@ class AddItemForm1(forms.Form):
     First form to be used in AddItemWizard view from views
     see https://github.com/django/django-formtools/
     """
-    categories = forms.ModelChoiceField(
+    categories = forms.ModelMultipleChoiceField(
         required=True,
         widget=forms.CheckboxSelectMultiple,
         queryset=Category.objects.all(),
@@ -22,7 +22,7 @@ class AddItemForm2(forms.Form):
     """
     Form for adding areas to an Item
     """
-    areas = forms.ModelChoiceField(
+    areas = forms.ModelMultipleChoiceField(
         required=True,
         widget=forms.CheckboxSelectMultiple,
         queryset=BusinessArea.objects.all(),

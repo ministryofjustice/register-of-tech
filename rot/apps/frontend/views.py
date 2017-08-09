@@ -56,6 +56,7 @@ class AddItemWizard(SessionWizardView):
     see https://github.com/django/django-formtools/
     """
     form_list = [AddItemForm1, AddItemForm2, AddItemForm3, AddItemForm4]
+    template_name = "frontend/item/wizard.html"
 
     def done(self, form_list, **kwargs):
         return render_to_response('frontend/item/done.html', {

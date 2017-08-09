@@ -1,0 +1,21 @@
+{% extends "frontend/base.html" %}
+
+{% block content %}
+    <main id="content" role="main">
+        <h2>Add Item</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ wizard.management_form }}
+            {% if wizard.form.forms %}
+                {{ wizard.form.management_form }}
+                {% for form in wizard.form.forms %}
+                    {{ form }}
+                {% endfor %}
+            {% else %}
+                {{ wizard.form }}
+            {% endif %}
+            <input type="submit" value="Submit"/>
+        </form>
+    </main>
+{% endblock %}
