@@ -14,7 +14,7 @@ Requirements
 
 Postgres
 
-.. code::
+.. code:: bash
 
     brew install postgres
 
@@ -59,7 +59,7 @@ Create the database:
     . bin/reset_db.sh
 
 Load data from Airtable:
-You will need to log in to airtable.com and  be given access to the database and add your key and app_id to the local.py file
+You will need to log in to airtable.com and be given access to the database and add your key and app_id to the local.py file
 
 .. code:: python
 
@@ -90,7 +90,35 @@ Start the dev server:
     ./manage.py runserver
 
 
-Visit thew site on http://localhost:8000/api/v1/
+Visit the API site on http://localhost:8000/api/v1/
+
+Frontend views
+==============
+
+View the initial list view on http://localhost:8000/services
+
+Other views are either partial or non-existent at the moment.
+
+Frontend assets
+===============
+
+A huge quantity of Sass was ported across from the React app (rot-frontend). It is certain that ~90% of this is not needed, but there has yet to be time to edit and prune it.
+
+All Sass/CSS is compiled into concatenated CSS files by gulp.
+
+To install the necessary gulp files, run
+
+.. code:: bash
+
+    npm install
+
+and then in a new tab run
+
+.. code:: bash
+
+    gulp watch
+
+This will compile and concatenate all Sass/CSS, and also watch the static-src files and recompile on changes.
 
 
 Build pydot model relationship image
