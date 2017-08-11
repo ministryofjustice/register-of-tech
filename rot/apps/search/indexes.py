@@ -70,9 +70,7 @@ class ItemIndex(DocType, BaseSearchIndexMixin):
     slug = Keyword(index=False)
     description = NgramText()
     categories = Keyword(multi=True)
-    categories_object = Object()
     areas = Keyword(multi=True)
-    areas_object = Object()
     owner = Text(fields={'raw': Keyword()})
 
     class Meta:
@@ -85,9 +83,7 @@ class ItemIndex(DocType, BaseSearchIndexMixin):
             slug=obj.slug,
             description=obj.description,
             categories=[c.name for c in obj.categories.all()],
-            categories_object=[{"id": c.id, "name": c.name} for c in obj.categories.all()],
             areas=[a.name for a in obj.areas.all()],
-            areas_object=[{"id": a.id, "name": a.name} for a in obj.areas.all()],
             owner=obj.owner.get_full_name(),
         )
 
